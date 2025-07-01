@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Insights Blog - MediAI</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='mediai_logo.png') }}">
+    <meta name="theme-color" content="#0d0d0d">
+    <!--Boostrap_css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #42a5f5 0%, #7e57c2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 0;
+            margin-left: 2px;
+        }
+
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+            transition: transform .3s;
+        }
+
+        .myimg:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 16px #00e5ff;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .blog-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .blog-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .blog-content {
+            padding: 40px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(66, 165, 245, 0.1), rgba(126, 87, 194, 0.1));
+            border-left: 4px solid #42a5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(66, 165, 245, 0.15);
+            color: #42a5f5;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .author-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .author-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 0 auto 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            color: #42a5f5;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .subscribe-section {
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .subscribe-btn {
+            background: white;
+            color: #42a5f5;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 0 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <div class="logo">
+        <img class="myimg" src="{{ url_for('static', filename='mediai_logo.png') }}" alt="Logo">
+      </div>
+      <a class="navbar-brand ms-2" href="/index">MediAI</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">Health Insights Blog</h1>
+            <p class="lead mx-auto" style="max-width: 700px;">
+                Explore how technology transforms healthcare through intelligent applications
+            </p>
+            <div class="mt-4">
+                <span class="tag">AI & Health</span>
+                <span class="tag">Tech Innovation</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Web Development</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h1 class="mb-4">Building a Symptom-Based Disease Diagnosis Web App with Flask and Machine Learning</h1>
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=50&h=50&q=80"
+                                 alt="Author" class="rounded-circle me-3">
+                            <div>
+                                <h6 class="mb-0">Shaikh Zahed</h6>
+                                <small class="text-muted">October 15, 2023 • 8 min read</small>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p class="mb-0">In today's digital age, timely and accurate healthcare access is more important than ever. This blog covers how we developed a smart web app using Flask and a Decision Tree Classifier to diagnose diseases from user symptoms.</p>
+                        </div>
+
+                        <h3 class="mt-5">The Healthcare Challenge</h3>
+                        <p>People often experience symptoms and seek immediate answers about their health. With overlapping signs across different conditions, it becomes challenging for individuals to differentiate between various illnesses. The traditional process of scheduling appointments, waiting for consultations, and undergoing tests can be time-consuming and stressful, especially for non-emergency conditions.</p>
+
+                        <div class="text-center my-5">
+                            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&h=400&q=80"
+                                 alt="Healthcare Challenge" class="img-fluid rounded">
+                            <small class="text-muted d-block mt-2">Understanding symptoms is the first step in diagnosis</small>
+                        </div>
+
+                        <h3>The MediAI Solution</h3>
+                        <p>Our team developed an AI-powered solution that bridges the gap between symptom recognition and professional diagnosis. The application provides:</p>
+                        <ol>
+                            <li class="mb-3"><strong>Symptom Input Interface:</strong> A clean, intuitive interface where users can easily input their symptoms using either text or voice recognition technology.</li>
+                            <li class="mb-3"><strong>Machine Learning Engine:</strong> A robust decision tree classifier trained on a comprehensive dataset of symptoms and diseases, capable of identifying patterns that might escape human observation.</li>
+                            <li class="mb-3"><strong>Instant Predictive Analysis:</strong> Real-time processing that delivers potential diagnoses within seconds of symptom submission.</li>
+                            <li class="mb-3"><strong>Comprehensive Health Guidance:</strong> Beyond diagnosis, the app provides detailed information about the condition, recommended medications, dietary advice, physical activities, and preventive measures.</li>
+                        </ol>
+
+                        <h3 class="mt-5">Key Features That Set Us Apart</h3>
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h4>Intelligent Diagnosis</h4>
+                                    <p>Our machine learning model achieves 95% accuracy in identifying common conditions based on symptom patterns.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h4>Responsive Design</h4>
+                                    <p>Fully responsive interface that works seamlessly across all devices from smartphones to desktops.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-notes-medical"></i>
+                                    </div>
+                                    <h4>Health Resources</h4>
+                                    <p>Comprehensive medical information including medications, diets, and exercises tailored to each condition.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h4>Privacy Focused</h4>
+                                    <p>All health data is encrypted and we never share personal information with third parties.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5">The Technology Stack</h3>
+                        <p>Building MediAI required a sophisticated technology stack:</p>
+                        <ul>
+                            <li class="mb-2"><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap</li>
+                            <li class="mb-2"><strong>Backend:</strong> Python, Flask framework</li>
+                            <li class="mb-2"><strong>Machine Learning:</strong> Scikit-learn, Pandas, NumPy</li>
+                            <li class="mb-2"><strong>Database:</strong> SQLite (development), PostgreSQL (production)</li>
+                            <li class="mb-2"><strong>Deployment:</strong> Docker, AWS Elastic Beanstalk</li>
+                        </ul>
+
+                        <div class="text-center my-5">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&h=400&q=80"
+                                 alt="Technology Stack" class="img-fluid rounded">
+                            <small class="text-muted d-block mt-2">Our technology stack enables powerful health insights</small>
+                        </div>
+
+                        <h3>Looking Toward the Future</h3>
+                        <p>MediAI represents just the beginning of AI's potential in healthcare. Our roadmap includes:</p>
+                        <ul>
+                            <li>Integration with wearable devices for real-time health monitoring</li>
+                            <li>Expansion to cover rare diseases and complex conditions</li>
+                            <li>Multilingual support to serve global communities</li>
+                            <li>Telemedicine integration for seamless doctor consultations</li>
+                            <li>Personalized health tracking and predictive analytics</li>
+                        </ul>
+
+                        <div class="highlight-box mt-5">
+                            <p class="mb-0"><strong>Conclusion:</strong> MediAI demonstrates how AI can revolutionize healthcare accessibility. By providing smart, fast, and helpful disease predictions coupled with rich medical content, we're taking a significant step forward in the remote health revolution. This technology empowers individuals to take control of their health journey while providing valuable insights that complement professional medical care.</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                            <div>
+                                <span class="tag">AI in Healthcare</span>
+                                <span class="tag">Flask Development</span>
+                                <span class="tag">Machine Learning</span>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fas fa-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Author Info -->
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <div class="author-card">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=100&h=100&q=80"
+                                 alt="Author" class="author-img">
+                            <h4>Shaikh Zahed</h4>
+                            <p class="text-muted">AI Developer & Health Tech Enthusiast</p>
+                            <p>Shaikh is the creator of MediAI and a passionate advocate for using technology to improve healthcare accessibility. With a background in AI and machine learning, he focuses on developing solutions that bridge the gap between medical expertise and everyday health management.</p>
+                            <div class="social-links mt-3">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Subscribe -->
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4 class="mb-4">Stay Updated</h4>
+                        <p>Subscribe to our newsletter for the latest health tech insights and updates.</p>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                        </div>
+                        <button class="subscribe-btn w-100">Subscribe</button>
+                    </div>
+                </div>
+
+                <!-- Popular Posts -->
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4 class="mb-4">Popular Posts</h4>
+                        <div class="d-flex mb-4">
+                            <img src="https://images.unsplash.com/photo-1581595219319-5cb0b5ce3b08?auto=format&fit=crop&w=80&h=80&q=80"
+                                 alt="Post" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-1">The Future of AI in Medical Diagnostics</h6>
+                                <small class="text-muted">Sep 28, 2023</small>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=80&h=80&q=80"
+                                 alt="Post" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-1">Understanding Common Symptoms and Their Meanings</h6>
+                                <small class="text-muted">Sep 15, 2023</small>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=80&h=80&q=80"
+                                 alt="Post" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-1">How Machine Learning is Changing Healthcare</h6>
+                                <small class="text-muted">Aug 30, 2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h4 class="mb-4">Categories</h4>
+                        <div class="d-flex flex-wrap">
+                            <span class="tag mb-2">AI & Health (12)</span>
+                            <span class="tag mb-2">Tech Innovation (8)</span>
+                            <span class="tag mb-2">Machine Learning (15)</span>
+                            <span class="tag mb-2">Web Development (7)</span>
+                            <span class="tag mb-2">Medical Insights (9)</span>
+                            <span class="tag mb-2">Wellness Tips (11)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscribe Section -->
+        <div class="subscribe-section text-center">
+            <h2 class="mb-3">Join Our Health Tech Community</h2>
+            <p class="mb-4">Subscribe to get the latest articles, health tips, and product updates</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control form-control-lg" placeholder="Your email address">
+                        <button class="btn subscribe-btn px-4">Subscribe</button>
+                    </div>
+                    <small class="opacity-75">We respect your privacy. Unsubscribe at any time.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="mb-4">MediAI</h4>
+                    <p>Empowering individuals with AI-driven health insights and personalized care guidance for better health outcomes.</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/index" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="/about" class="text-white text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="/contact" class="text-white text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="/blog" class="text-white text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Health Library</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Symptom Checker</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Wellness Tips</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@mediai.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (123) 456-7890</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Aurangabad, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center pt-4 mt-4 border-top">
+                <p>&copy; 2023 MediAI Health Care. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

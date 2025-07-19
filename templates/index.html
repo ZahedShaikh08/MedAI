@@ -242,6 +242,24 @@
         body {
             opacity: 1;
         }
+        
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .disclaimer strong {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -386,7 +404,10 @@
             </div>
         </div>
     </div>
-
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This AI system provides preliminary health information only. 
+        Always consult a medical professional for diagnosis and treatment.
+    </div>
     <!-- JavaScript -->
     <script>
         // Speech Recognition

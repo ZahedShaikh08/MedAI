@@ -1,0 +1,458 @@
+2025-07-19 21:06:13,989 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.117.158.144:5000
+2025-07-19 21:06:13,989 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-19 21:06:24,553 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:06:24] "GET / HTTP/1.1" 200 -
+2025-07-19 21:06:24,983 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:06:24] "[36mGET /static/mediai_logo.png HTTP/1.1[0m" 304 -
+2025-07-19 21:06:56,732 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:06:56] "GET / HTTP/1.1" 200 -
+2025-07-19 21:06:56,917 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:06:56] "[36mGET /static/mediai_logo.png HTTP/1.1[0m" 304 -
+2025-07-19 21:06:57,034 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:06:57] "[36mGET /static/mediai_logo.png HTTP/1.1[0m" 304 -
+2025-07-19 21:07:01,422 - root - ERROR - Prediction error: No valid symptoms for prediction
+2025-07-19 21:07:01,422 - main - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+2025-07-19 21:07:01,446 - root - ERROR - 500 Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2025-07-19 21:07:01,453 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:07:01] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-07-19 21:07:01,550 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 823, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 199, in internal_error
+    return render_template('error.html', message="Internal server error"), 500
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+2025-07-19 21:07:05,666 - root - ERROR - Prediction error: No valid symptoms for prediction
+2025-07-19 21:07:05,668 - main - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+2025-07-19 21:07:05,676 - root - ERROR - 500 Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2025-07-19 21:07:05,678 - werkzeug - INFO - 127.0.0.1 - - [19/Jul/2025 21:07:05] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-07-19 21:07:05,727 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 823, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 199, in internal_error
+    return render_template('error.html', message="Internal server error"), 500
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+2025-07-19 21:07:43,261 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.117.158.144:5000
+2025-07-19 21:07:43,262 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-19 21:07:55,512 - werkzeug - INFO - 10.117.158.144 - - [19/Jul/2025 21:07:55] "GET / HTTP/1.1" 200 -
+2025-07-19 21:07:55,696 - werkzeug - INFO - 10.117.158.144 - - [19/Jul/2025 21:07:55] "[36mGET /static/mediai_logo.png HTTP/1.1[0m" 304 -
+2025-07-19 21:08:04,718 - root - ERROR - Prediction error: No valid symptoms for prediction
+2025-07-19 21:08:04,720 - main - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+2025-07-19 21:08:04,750 - root - ERROR - 500 Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2025-07-19 21:08:04,750 - werkzeug - INFO - 10.117.158.144 - - [19/Jul/2025 21:08:04] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-07-19 21:08:04,824 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 217, in predict
+    disease = get_predicted_value(user_symptoms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 173, in get_predicted_value
+    raise ValueError("No valid symptoms for prediction")
+ValueError: No valid symptoms for prediction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask_limiter\extension.py", line 1186, in __inner
+    R, flask.current_app.ensure_sync(cast(Callable[P, R], obj))(*a, **k)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 232, in predict
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\werkzeug\serving.py", line 331, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\app.py", line 823, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\main.py", line 199, in internal_error
+    return render_template('error.html', message="Internal server error"), 500
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\parve\OneDrive\Desktop\2025 Projects\Madicine Recommendation System\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: error.html

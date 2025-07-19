@@ -5,6 +5,7 @@ import pickle
 from difflib import get_close_matches
 import os
 import logging
+from pathlib import Path
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
@@ -13,33 +14,51 @@ logger = logging.getLogger(__name__)
 # flask app
 app = Flask(__name__, static_folder='static')
 
-# Get the base directory of the app
-base_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the absolute path to the current directory
+BASE_DIR = Path(__file__).resolve().parent
+logger.info(f"Base directory: {BASE_DIR}")
 
 # Define paths to datasets and models
 def get_path(relative_path):
-    return os.path.join(base_dir, relative_path)
+    """Get absolute path from relative path"""
+    path = BASE_DIR / relative_path
+    logger.info(f"Resolved path: {path}")
+    return path
 
-# load datasets
+# Load datasets
 try:
-    sym_des = pd.read_csv("datasets/symtoms_df.csv")
-    precautions = pd.read_csv("datasets/precautions_df.csv")
-    workout = pd.read_csv("datasets/workout_df.csv")
-    description = pd.read_csv("datasets/description.csv")
-    medications = pd.read_csv('datasets/medications.csv')
-    diets = pd.read_csv("datasets/diets.csv")
+    logger.info("Loading datasets...")
+    sym_des = pd.read_csv(get_path("datasets/symtoms_df.csv"))
+    precautions = pd.read_csv(get_path("datasets/precautions_df.csv"))
+    workout = pd.read_csv(get_path("datasets/workout_df.csv"))
+    description = pd.read_csv(get_path("datasets/description.csv"))
+    medications = pd.read_csv(get_path('datasets/medications.csv'))
+    diets = pd.read_csv(get_path("datasets/diets.csv"))
     logger.info("Successfully loaded all datasets")
 except Exception as e:
     logger.error(f"Error loading datasets: {str(e)}")
+    # List directory contents for debugging
+    datasets_dir = get_path("datasets")
+    if datasets_dir.exists():
+        logger.error(f"Files in datasets directory: {os.listdir(datasets_dir)}")
+    else:
+        logger.error(f"Datasets directory does not exist: {datasets_dir}")
     raise
 
 # Load model
 try:
+    logger.info("Loading model...")
     with open(get_path('models/svc.pkl'), 'rb') as f:
         svc = pickle.load(f)
     logger.info("Successfully loaded the model")
 except Exception as e:
     logger.error(f"Error loading model: {str(e)}")
+    # List directory contents for debugging
+    models_dir = get_path("models")
+    if models_dir.exists():
+        logger.error(f"Files in models directory: {os.listdir(models_dir)}")
+    else:
+        logger.error(f"Models directory does not exist: {models_dir}")
     raise
 
 # =========== DEFINE SYMPTOMS DICTIONARY FIRST ===========

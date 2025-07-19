@@ -1,6 +1,6 @@
-# 🧠 MedAI – AI‑Powered Health Diagnosis
+# 🧠 MediAI – AI‑Powered Health Diagnosis
 
-**MedAI** is an intuitive web app that leverages machine learning to provide preliminary health diagnostics based on user‑entered symptoms. Built with **Flask** (backend) and optionally deployable in **Streamlit**, MedAI combines predictive insights with lifestyle guidance—description, precautions, medications, diet, and workouts.
+**MediAI** is an intuitive web app that leverages machine learning to provide preliminary health diagnostics based on user‑entered symptoms. Built with **Flask** (backend) and optionally deployable in **Streamlit**, MediAI combines predictive insights with lifestyle guidance—description, precautions, medications, diet, and workouts.
 
 ---
 
@@ -17,7 +17,7 @@
 ## 🧩 Project Structure
 
 ```
-MedAI/
+MediAI/
 ├── datasets/
 │   ├── symtoms_df.csv
 │   ├── precautions_df.csv
@@ -48,8 +48,8 @@ MedAI/
 
 1. **Clone the repo**  
    ```bash
-   git clone https://github.com/ZahedShaikh08/MedAI.git
-   cd MedAI
+   git clone https://github.com/ZahedShaikh08/MediAI.git
+   cd MediAI
    ```
 
 2. **Create virtual environment**  
@@ -111,7 +111,7 @@ Contributions and suggestions are welcome! Feel free to open an issue or submit 
 
 ## ⚠️ Disclaimer
 
-MedAI is a _research & educational_ tool. It's **not** a substitute for professional medical evaluation or diagnosis.
+MediAI is a _research & educational_ tool. It's **not** a substitute for professional medical evaluation or diagnosis.
 
 ---
 

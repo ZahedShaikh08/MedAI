@@ -233,7 +233,57 @@
             border-bottom: none;
         }
 
+        /* Disease List Styling */
+        #diseaseList .card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(66, 165, 245, 0.3);
+        }
+
+        #diseaseList .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3);
+            border: 1px solid #7e57c2;
+        }
+
+        #diseaseList .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+    border-radius: 0.75rem;
+    vertical-align: middle;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+.bg-info {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+/* Symptom card styling */
+.symptom-card .card-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+
         /* === ANIMATIONS === */
+        @media (max-width: 768px) {
+    .symptom-card .card-title {
+        font-size: 0.85rem;
+    }
+}
+
+        @media (max-width: 768px) {
+            .badge {
+                font-size: 0.6rem;
+                padding: 0.25em 0.5em;
+            }
+        }
+
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
@@ -444,19 +494,79 @@
     </div>
     {% endif %}
 
-    <!-- Toast Notification -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div id="resultToast" class="toast align-items-center text-white gradient-toast border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">Your health report is ready!</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+<!-- Predictable Diseases Section -->
+    <div class="container mt-5">
+        <div class="row justify-content-center mb-4">
+            <div class="col-auto">
+                <button class="btn btn-gradient w-auto px-4" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#diseaseList" 
+                        aria-expanded="false" 
+                        aria-controls="diseaseList">
+                    View All Diseases
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-gradient w-auto px-4" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#symptomsList" 
+                        aria-expanded="false" 
+                        aria-controls="symptomsList">
+                    View All Symptoms
+                </button>
+            </div>
+        </div>
+
+    <div class="collapse" id="diseaseList">
+        <div class="glass-card p-4">
+            <h3 class="text-center mb-4 gradient-text">Diseases Our System Can Recognize</h3>
+            <div class="row">
+                {% for disease in all_diseases %}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card glass-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ disease }}
+                                {% if disease in predictable_diseases %}
+                                <span class="badge bg-success ms-2">Predictable</span>
+                                {% endif %}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <div class="disclaimer">
-        <strong>Disclaimer:</strong> This AI system provides preliminary health information only. 
-        Always consult a medical professional for diagnosis and treatment.
+
+    <div class="collapse" id="symptomsList">
+        <div class="glass-card p-4">
+            <h3 class="text-center mb-4 gradient-text">Symptoms Our System Can Recognize</h3>
+            <div class="row">
+                {% for symptom in recognizable_symptoms %}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card glass-card symptom-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ symptom.replace('_', ' ').title() }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This AI system provides preliminary health information only and is developed solely for project purposes. Always consult a medical professional for diagnosis and treatment.
+</div>
+
+    </div>
+    
     <!-- JavaScript -->
     <script>
         // Speech Recognition
@@ -486,16 +596,6 @@
         document.documentElement.classList.add('fade');
         window.addEventListener('DOMContentLoaded', () => {
             document.documentElement.classList.remove('fade');
-        });
-
-        // Prediction Result Display
-        document.addEventListener("DOMContentLoaded", () => {
-            const result = document.getElementById("predictionResult");
-            if (result && result.innerHTML.trim().length > 0) {
-                result.style.display = "block";
-                setTimeout(() => result.style.opacity = 1, 100);
-                result.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
         });
 
         // Form Submission Handling
@@ -562,7 +662,7 @@
                 : input.trim();
             
             if (currentTerm.length > 2) {
-                // Get matching symptoms from global variable
+                // Get matching symptoms
                 const matches = Object.keys(normalizedSymptoms)
                     .filter(symptom => symptom.includes(currentTerm))
                     .map(symptom => normalizedSymptoms[symptom])
@@ -590,12 +690,20 @@
                         const lastCommaIndex = text.lastIndexOf(',');
                         
                         if (lastCommaIndex >= 0) {
-                            input.value = text.substring(0, lastCommaIndex + 1) + ' ' + match + ', ';
+                            // Replace only the last part of the text
+                            input.value = text.substring(0, lastCommaIndex + 1) + ' ' + match;
                         } else {
-                            input.value = match + ', ';
+                            // Replace entire text if no commas
+                            input.value = match;
                         }
+                        
                         input.focus();
                         hideSuggestions();
+                        
+                        // Set cursor position to end
+                        setTimeout(() => {
+                            input.selectionStart = input.selectionEnd = input.value.length;
+                        }, 0);
                     };
                     container.appendChild(div);
                 });
